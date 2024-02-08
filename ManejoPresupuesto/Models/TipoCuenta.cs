@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ManejoPresupuesto.Validaciones;
+using System.ComponentModel.DataAnnotations;
 
 namespace ManejoPresupuesto.Models
 {
@@ -13,23 +14,24 @@ namespace ManejoPresupuesto.Models
         
         // Al quitar el nombre del campo de Label, con Display podemos asignar el nombre
         [Display(Name = "Nombre del Tipo de Cuenta")]
+        [PrimeraLetraMayusculaAtributte]
         public string Nombre { get; set; }
         public int UsuarioId { get; set; }
         public int Orden { get; set; }
 
         // Otras pruebas de validación
-        [Required(ErrorMessage = "El campo: {0} es requerido")]
-        [EmailAddress(ErrorMessage = "El campo debe ser un correo electrónico")]
-        public string Email { get; set; }
+        //[Required(ErrorMessage = "El campo: {0} es requerido")]
+        //[EmailAddress(ErrorMessage = "El campo debe ser un correo electrónico")]
+        //public string Email { get; set; }
 
-        [Range(minimum: 18, maximum: 65, ErrorMessage = "La edad debe ser entre: {1} y: {2}")]
-        public int Edad { get; set; }
+        //[Range(minimum: 18, maximum: 65, ErrorMessage = "La edad debe ser entre: {1} y: {2}")]
+        //public int Edad { get; set; }
 
-        [Url(ErrorMessage = "El campo debe ser una URL válida")]
-        public string URL { get; set; }
+        //[Url(ErrorMessage = "El campo debe ser una URL válida")]
+        //public string URL { get; set; }
 
-        [CreditCard(ErrorMessage = "La tarjeta de crédito NO es válida")]
-        [Display(Name = "Tarjeta de Crédito")]
-        public string TarjetaCredito { get; set; }
+        //[CreditCard(ErrorMessage = "La tarjeta de crédito NO es válida")]
+        //[Display(Name = "Tarjeta de Crédito")]
+        //public string TarjetaCredito { get; set; }
     }
 }

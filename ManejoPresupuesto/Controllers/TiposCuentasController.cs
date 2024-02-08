@@ -26,7 +26,7 @@ namespace ManejoPresupuesto.Controllers
 
         [HttpPost]
 
-        public IActionResult Crear(TipoCuenta tipoCuenta)
+        public async Task<IActionResult> Crear(TipoCuenta tipoCuenta)
         {
             if (!ModelState.IsValid)
             {
@@ -34,7 +34,7 @@ namespace ManejoPresupuesto.Controllers
             }
 
             tipoCuenta.UsuarioId = 1;
-            reposotioTiposCuentas.Crear(tipoCuenta);
+            await reposotioTiposCuentas.Crear(tipoCuenta);
 
             return View();
         }

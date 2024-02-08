@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ManejoPresupuesto.Models;
+using Microsoft.Data.SqlClient;
+using Dapper;
 
 namespace ManejoPresupuesto.Controllers
 {
@@ -9,17 +11,25 @@ namespace ManejoPresupuesto.Controllers
     */
     public class TiposCuentasController: Controller
     {
-        public IActionResult Crear()
+        private readonly string connectionString;
+        public TiposCuentasController(IConfiguration configuration)
         {
-            return View();
+            connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
-        [HttpPost]
-        public IActionResult Crear(TipoCuenta tipoCuenta)
+        //public IActionResult Crear()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+
+
+        public IActionResult Crear()
         {
-            if(!ModelState.IsValid)
+            using ( var connection = new SqlConnection(connectionString) )
             {
-                return View(tipoCuenta);
+                var query = connection.Query("SELECT 1").FirstOrDefault();
             }
 
             return View();

@@ -39,7 +39,7 @@ namespace ManejoPresupuesto.Controllers
 
             if (yaExisteTipoCuenta)
             {
-                ModelState.AddModelError(nameof(tipoCuenta.Nombre), $"El nombre {tipoCuenta.Nombre} ya existe");
+                ModelState.AddModelError(nameof(tipoCuenta.Nombre), $"El nombre: '{tipoCuenta.Nombre}', ya existe. Intente con otro...");
 
                 return View(tipoCuenta);
             }
@@ -47,6 +47,21 @@ namespace ManejoPresupuesto.Controllers
             await reposotioTiposCuentas.Crear(tipoCuenta);
 
             return View();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> VerificarExisteTipoCuenta(string nombre)
+        {
+            var usuarioId = 1;
+            var yaExisteTipoCuenta = await reposotioTiposCuentas.Existe(nombre, usuarioId);
+
+            if (yaExisteTipoCuenta)
+            {
+                return Json($"El nombre: {nombre}, ya existe");
+            }
+
+            return Json(true);
         }
     }
 }

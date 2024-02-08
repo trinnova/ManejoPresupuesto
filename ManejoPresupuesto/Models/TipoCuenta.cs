@@ -1,4 +1,5 @@
 ﻿using ManejoPresupuesto.Validaciones;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace ManejoPresupuesto.Models
@@ -15,6 +16,7 @@ namespace ManejoPresupuesto.Models
         // Al quitar el nombre del campo de Label, con Display podemos asignar el nombre
         [Display(Name = "Nombre del Tipo de Cuenta")]
         [PrimeraLetraMayusculaAtributte]
+        [Remote(action: "VerificarExisteTipoCuenta", controller: "TiposCuentas")]
         public string Nombre { get; set; }
         public int UsuarioId { get; set; }
         public int Orden { get; set; }

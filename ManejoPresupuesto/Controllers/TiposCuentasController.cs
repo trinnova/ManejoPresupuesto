@@ -34,6 +34,16 @@ namespace ManejoPresupuesto.Controllers
             }
 
             tipoCuenta.UsuarioId = 1;
+
+            var yaExisteTipoCuenta = await reposotioTiposCuentas.Existe(tipoCuenta.Nombre, tipoCuenta.UsuarioId);
+
+            if (yaExisteTipoCuenta)
+            {
+                ModelState.AddModelError(nameof(tipoCuenta.Nombre), $"El nombre {tipoCuenta.Nombre} ya existe");
+
+                return View(tipoCuenta);
+            }
+
             await reposotioTiposCuentas.Crear(tipoCuenta);
 
             return View();
